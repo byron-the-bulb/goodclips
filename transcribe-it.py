@@ -1,11 +1,10 @@
 import os
 import openai
-import openai_key
 import time
 from requests.exceptions import RequestException
 
 # Set up your OpenAI API key
-openai.api_key = openai_key.get_key()
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # Directory containing audio files
 audio_dir = "media"

@@ -11,6 +11,8 @@ def extract_and_convert_audio(video_path, audio_path):
     command = [
         'ffmpeg', '-i', video_path, '-ar', '16000', '-ac', '1', '-f', 'wav', audio_path
     ]
+    print(f"Extracting audio from {video_path}...")
+    print(command)
     subprocess.run(command, check=True)
 
 def read_wave(path):
@@ -151,9 +153,10 @@ def vad_collector(sample_rate, frame_duration_ms,
         yield b''.join([f.bytes for f in voiced_frames])
 
 def main(args):
-    if len(args) != 3:
+    if len(args) != 2:
         sys.stderr.write(
             'Usage: example.py <aggressiveness> <path to video file>\n')
+        print(args)
         sys.exit(1)
 
     video_path = args[1]
